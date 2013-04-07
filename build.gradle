@@ -1,16 +1,59 @@
 apply plugin: 'java'
 apply plugin: 'war'
+apply plugin: 'tomcat'
+
 
 sourceCompatibility = 1.6
 
 repositories {
-    /* mavenCentral() */
+    mavenCentral()
+}
 
-    flatDir { dirs "lib" }
-    maven {
-        url "http://repo.4finance.net/nexus/content/repositories/public/"
+dependencies {
+    compile group: 'javax.servlet', name: 'servlet-api', version: '2.3'
+    compile group: 'org.apache.tomcat', name: 'servlet-api', version: '6.0.35'
+
+//    def tomcatVersion = '7.0.11'
+//    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+//            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}"
+//    tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}") {
+//        exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
+//    }
+
+
+        def tomcatVersion = '6.0.29'
+        tomcat "org.apache.tomcat:catalina:${tomcatVersion}",
+                "org.apache.tomcat:coyote:${tomcatVersion}",
+                "org.apache.tomcat:jasper:${tomcatVersion}"
+
+
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
     }
 
+    dependencies {
+        classpath 'org.gradle.api.plugins:gradle-tomcat-plugin:0.9.8'
+    }
+}
+
+tomcatRun {
+    httpPort = 8081
+    httpsPort = 8091
+    enableSSL = false
+    contextPath = "/"
+    outputFile = file('log/tomcat.log')
+    webDefaultXml = file('src/main/webapp/WEB-INF/web.xml')
+    validateXml = true
+}
+
+tomcatRunWar {
+    httpPort = 8081
+    contextPath = "/"
+    outputFile = file('log/tomcat.log')
+    webDefaultXml = file('src/main/webapp/WEB-INF/web.xml')
 }
 
 sourceSets {
@@ -24,18 +67,8 @@ sourceSets {
     }
 }
 
-dependencies {
-    compile group: 'javax.servlet', name: 'servlet-api', version: '2.3'
-    compile group: 'org.apache.tomcat', name: 'servlet-api', version: '6.0.35'
-    testCompile group: 'junit', name: 'junit', version: '4.+'
-}
-
 task hello {
     doLast {
         println 'Hello world!'
     }
-}
-
-task hello2(dependsOn: hello) << {
-    println 'Hello world! 2'
 }
