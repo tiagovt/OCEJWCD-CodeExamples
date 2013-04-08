@@ -1,6 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'war'
-apply plugin: 'tomcat'
+//apply plugin: 'tomcat'
+apply plugin: 'jetty'
 
 
 sourceCompatibility = 1.6
@@ -21,10 +22,10 @@ dependencies {
 //    }
 
 
-        def tomcatVersion = '6.0.29'
-        tomcat "org.apache.tomcat:catalina:${tomcatVersion}",
-                "org.apache.tomcat:coyote:${tomcatVersion}",
-                "org.apache.tomcat:jasper:${tomcatVersion}"
+//    def tomcatVersion = '6.0.29'
+//    tomcat "org.apache.tomcat:catalina:${tomcatVersion}",
+//             "org.apache.tomcat:coyote:${tomcatVersion}",
+//             "org.apache.tomcat:jasper:${tomcatVersion}"
 
 
 }
@@ -39,22 +40,30 @@ buildscript {
     }
 }
 
-tomcatRun {
-    httpPort = 8081
-    httpsPort = 8091
-    enableSSL = false
-    contextPath = "/"
-    outputFile = file('log/tomcat.log')
-    webDefaultXml = file('src/main/webapp/WEB-INF/web.xml')
-    validateXml = true
+jettyRun{
+     httpPort=8081
+     webAppSourceDirectory = file('src/main/webapp/')
+     contextPath='/'
 }
 
-tomcatRunWar {
-    httpPort = 8081
-    contextPath = "/"
-    outputFile = file('log/tomcat.log')
-    webDefaultXml = file('src/main/webapp/WEB-INF/web.xml')
-}
+
+
+//tomcatRun {
+//    httpPort = 8081
+//    httpsPort = 8091
+//    enableSSL = false
+//    contextPath = "/"
+//    outputFile = file('log/tomcat.log')
+//    webDefaultXml = file('src/main/webapp/WEB-INF/web.xml')
+//    validateXml = true
+//}
+
+//tomcatRunWar {
+//    httpPort = 8081
+//    contextPath = "/"
+//    outputFile = file('log/tomcat.log')
+//    webDefaultXml = file('src/main/webapp/WEB-INF/web.xml')
+//}
 
 sourceSets {
     main {
