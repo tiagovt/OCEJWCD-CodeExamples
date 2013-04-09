@@ -1,83 +1,28 @@
-apply plugin: 'java'
-apply plugin: 'war'
-//apply plugin: 'tomcat'
-apply plugin: 'jetty'
 
 
-sourceCompatibility = 1.6
-
-repositories {
-    mavenCentral()
+allprojects {
+    task hello << {task -> println "I'm $task.project.name" }
 }
-
-dependencies {
-    compile group: 'javax.servlet', name: 'servlet-api', version: '2.3'
-    compile group: 'org.apache.tomcat', name: 'servlet-api', version: '6.0.35'
-
-//    def tomcatVersion = '7.0.11'
-//    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
-//            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}"
-//    tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}") {
-//        exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
-//    }
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'jetty'
 
 
-//    def tomcatVersion = '6.0.29'
-//    tomcat "org.apache.tomcat:catalina:${tomcatVersion}",
-//             "org.apache.tomcat:coyote:${tomcatVersion}",
-//             "org.apache.tomcat:jasper:${tomcatVersion}"
-
-
-}
-
-buildscript {
     repositories {
         mavenCentral()
     }
 
     dependencies {
-        classpath 'org.gradle.api.plugins:gradle-tomcat-plugin:0.9.8'
+        compile group: 'javax.servlet', name: 'servlet-api', version: '2.3'
+        compile group: 'org.apache.tomcat', name: 'servlet-api', version: '6.0.35'
+
+    }
+
+    jettyRun{
+        httpPort=8081
+        webAppSourceDirectory = file("${projectDir}/src/main/webapp/")
+        contextPath='/'
     }
 }
 
-jettyRun{
-     httpPort=8081
-     webAppSourceDirectory = file('src/main/webapp/')
-     contextPath='/'
-}
 
-
-
-//tomcatRun {
-//    httpPort = 8081
-//    httpsPort = 8091
-//    enableSSL = false
-//    contextPath = "/"
-//    outputFile = file('log/tomcat.log')
-//    webDefaultXml = file('src/main/webapp/WEB-INF/web.xml')
-//    validateXml = true
-//}
-
-//tomcatRunWar {
-//    httpPort = 8081
-//    contextPath = "/"
-//    outputFile = file('log/tomcat.log')
-//    webDefaultXml = file('src/main/webapp/WEB-INF/web.xml')
-//}
-
-sourceSets {
-    main {
-        java {
-            srcDir 'src/java/main'
-        }
-        resources {
-            srcDir 'src/resources'
-        }
-    }
-}
-
-task hello {
-    doLast {
-        println 'Hello world!'
-    }
-}
