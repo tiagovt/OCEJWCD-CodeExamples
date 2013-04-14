@@ -9,6 +9,7 @@ Books
 * Head First Servlets and JSP: Passing the Sun Certified Web Component Developer Exam, http://www.amazon.com/Head-First-Servlets-JSP-Certified/dp/0596516681/ref=pd_cp_b_0 
 
 
+Project Structure
 /root
 |
 +- Chapter 1

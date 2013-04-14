@@ -4,23 +4,10 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
 
-
-    <display-name>SCWCD-CodeExamples</display-name>
-    <!--
-        <welcome-file-list>
-            <welcome-file>main</welcome-file>
-        </welcome-file-list>
-    -->
-
-    <servlet>
-        <servlet-name>indexFile</servlet-name>
-        <jsp-file>/index.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>indexFile</servlet-name>
-        <url-pattern>/main</url-pattern>
-    </servlet-mapping>
-
+    <display-name>OCEJWCD-CodeExamples</display-name>
+    <welcome-file-list>
+        <welcome-file>/oneParam.DoMe</welcome-file>
+    </welcome-file-list>
     <servlet>
         <servlet-name>oneParam</servlet-name>
         <servlet-class>com.bla.laa.OneParam</servlet-class>

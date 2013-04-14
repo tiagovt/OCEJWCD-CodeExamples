@@ -1,1 +1,7 @@
-include "chapter_1_1", "chapter_1_2", "chapter_2"
+
+include  "src:chp_1:chp_11",
+         "src:chp_1:chp_12:chp_121"
+             //"chp_122",
+             //"chp_2"
+
+

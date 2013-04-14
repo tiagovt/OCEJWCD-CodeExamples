@@ -1,6 +1,6 @@
-package norma.packg.multipleparams;
+package com.bla.laa;
 
-import norma.packg.ServletHelper;
+import com.bla.laa.ServletHelper;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -31,6 +31,7 @@ public class MultipleParams extends HttpServlet {
         pw.println("<br> RemoteUser  : " + request.getRemoteUser());
 
         new ServletHelper(request, response).printInfo();
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

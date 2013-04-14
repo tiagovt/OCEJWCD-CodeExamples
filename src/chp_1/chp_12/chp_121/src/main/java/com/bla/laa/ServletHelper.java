@@ -3,7 +3,7 @@
  *
  * Copyright Swiss Reinsurance Company, Mythenquai 50/60, CH 8022 Zurich. All rights reserved.
  */
-package norma.packg;
+package com.bla.laa;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
