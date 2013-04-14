@@ -1,6 +1,6 @@
 
-include  "src:chp_1:chp_11",
-         "src:chp_1:chp_12:chp_121"
+include  "src:cp_1:cp_11",
+         "src:cp_1:cp_12:cp_121"
              //"chp_122",
              //"chp_2"
 
