@@ -24,4 +24,12 @@ subprojects {
     }
 }
 
+project("src:cp_2"){
+    jettyRun{
+        httpPort=8082
+        webAppSourceDirectory = file("${projectDir}/src/main/webapp/")
+        contextPath='contextName'
+    }
+}
+
 
